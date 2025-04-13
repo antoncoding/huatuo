@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 
@@ -9,14 +9,12 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application
 COPY . .
 
-# Create a directory for text files if it doesn't exist
+# Create necessary directories
 RUN mkdir -p text_files
-
-# Create a directory for the vector database
 RUN mkdir -p db
 
 # Expose the port
 EXPOSE 8000
 
 # Command to run the application
-CMD ["uvicorn", "rag_chatbot:app", "--host", "0.0.0.0", "--port", "8000"] 
+CMD ["python", "-m", "app.main"] 

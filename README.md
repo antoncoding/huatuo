@@ -1,62 +1,69 @@
-# Local RAG Chatbot
+# Huato - Telegram Chatbot with RAG
 
-A simple Retrieval-Augmented Generation (RAG) chatbot that uses your local text files as a knowledge base, powered by OpenAI's GPT-4.
+A Python-based Telegram chatbot that uses Retrieval-Augmented Generation (RAG) for enhanced responses.
 
-## Setup
+## Features
 
-1. Create a virtual environment and install dependencies:
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
+- FastAPI web server
+- Telegram bot integration
+- PostgreSQL database
+- RAG capabilities for improved responses
+
+## Deployment on Railway
+
+1. **Prerequisites**
+   - Railway account
+   - Telegram bot token
+
+2. **Environment Variables**
+   - `TELEGRAM_TOKEN`: Your Telegram bot token
+   - `DATABASE_URL`: Automatically provided by Railway
+   - `PORT`: Automatically set by Railway
+
+3. **Deployment Steps**
+   - Create a new project on Railway
+   - Connect your GitHub repository
+   - Add a PostgreSQL database
+   - Set the required environment variables
+   - Deploy!
+
+## Local Development
+
+1. **Setup**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
+
+2. **Environment Variables**
+   Create a `.env` file with:
+   ```
+   TELEGRAM_TOKEN=your_token_here
+   DATABASE_URL=postgresql://user:pass@localhost:5432/dbname
+   ```
+
+3. **Run**
+   ```bash
+   python -m app.main
+   ```
+
+## Project Structure
+
+```
+.
+├── app/
+│   ├── main.py           # Application entry point
+│   ├── config/           # Configuration files
+│   ├── handlers/         # API and Telegram handlers
+│   ├── models/           # Database models
+│   └── services/         # Business logic
+├── requirements.txt      # Python dependencies
+├── Procfile             # Railway process file
+├── runtime.txt          # Python version
+└── Dockerfile           # Container configuration
 ```
 
-2. Create a directory for your text files:
-```bash
-mkdir text_files
-```
+## License
 
-3. Copy your text files into the `text_files` directory.
-
-4. Set up your OpenAI API key:
-```bash
-export OPENAI_API_KEY=your_api_key_here
-```
-Or create a `.env` file in the project root with:
-```
-OPENAI_API_KEY=your_api_key_here
-```
-
-## Usage
-
-1. Start the server:
-```bash
-python rag_chatbot.py
-```
-
-2. The server will start on `http://localhost:8000`
-
-3. You can query the chatbot using curl or any HTTP client:
-```bash
-curl -X POST "http://localhost:8000/query" \
-     -H "Content-Type: application/json" \
-     -d '{"question": "Your question here"}'
-```
-
-## How it Works
-
-1. The system loads all text files from the specified directory
-2. Documents are split into chunks for better retrieval
-3. Text is converted to embeddings using OpenAI's embedding model
-4. Vectors are stored in a local Chroma database
-5. When you query, the system:
-   - Finds relevant chunks from your documents
-   - Uses them as context for GPT-4
-   - Returns an answer based on your documents
-
-## Notes
-
-- The system uses OpenAI's embedding model for vectorization
-- The LLM used is GPT-4 Turbo
-- All data is stored locally in the `db` directory
-- You'll need an OpenAI API key with access to GPT-4 
+MIT 
