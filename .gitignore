@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Chroma database
+db/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log 
+
+rag_chatbot.db
