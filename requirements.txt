@@ -16,3 +16,4 @@ python-telegram-bot==20.6
 langgraph>=0.3.29
 langchain_anthropic>=0.3.10
 telegramify-markdown>=0.5.1
+faiss-cpu>=1.0.0
